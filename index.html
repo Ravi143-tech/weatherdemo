@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1 style="color: blue;" align = "center;"> Weather Forecast  </h1>
+        <input id ="n1" type = "string" placeholder="Enter placename..." />
+        <button onclick = "tom" type = "button"> Search </button>
+        <div id="weather">
+            <div id="description"></div>
+            <h1 id="temp"></h1>
+            <div id="location"></div>
+          </div>
+        <script>
+            function tom(cityName){
+                var key = '{yourkey}';
+  fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityName+ '&appid=' + key)  
+  .then(function(resp) { return resp.json() }) // Convert data to json
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function() {
+    // catch any errors
+  });
+}
+
+window.onload = function() {
+  weatherBallon( london );
+}
+            }
+
+        </script>
+    </body>
+</html>
