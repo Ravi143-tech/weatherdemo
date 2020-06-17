@@ -6,30 +6,19 @@
     <body>
         <h1 style="color: blue;" align = "center;"> Weather Forecast  </h1>
         <input id ="n1" type = "string" placeholder="Enter placename..." />
-        <button onclick = "tom" type = "button"> Search </button>
-        <div id="weather">
-            <div id="description"></div>
-            <h1 id="temp"></h1>
-            <div id="location"></div>
-          </div>
-        <script>
-            function tom(cityName){
-                var key = '{yourkey}';
-  fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityName+ '&appid=' + key)  
-  .then(function(resp) { return resp.json() }) // Convert data to json
+        <button onclick = "tom" type = "submit"> Search </button>
+    <script>
+        function tom( cityName ) {
+  var key = '831a5f29a997f7b596fff7b468ac0129';
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key)  
+  .then(function(resp) { return resp.json() }) 
   .then(function(data) {
     console.log(data);
   })
   .catch(function() {
-    // catch any errors
+    console.log(error);
   });
 }
-
-window.onload = function() {
-  weatherBallon( london );
-}
-            }
-
-        </script>
+    </script>
     </body>
 </html>
