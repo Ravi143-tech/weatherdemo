@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         
     </head>
     <body>
-        <h1 style="color: blue;" align = "center;"> Weather Forecast  </h1>
-        <input id ="n1" type = "string" placeholder="Enter placename..." />
-        <button onclick = "tom" type = "submit"> Search </button>
+
+       <div class="input">
+         <input type="text" class="inputValue" placeholder="enter a city">
+         <input type="submit" value = "Submit">
+       </div>
+
+       <div class="display">
+         <h1 class="name"></h1>
+         <p class = "desc"></p>
+         <p class ="temp"></p>
+       </div>
     <script>
-        function tom( cityName ) {
-  var key = '831a5f29a997f7b596fff7b468ac0129';
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key)  
-  .then(function(resp) { return resp.json() }) 
-  .then(function(data) {
+      var button = document.querySelector('.button')
+      var inputValue = document.querySelector('.inputValue')
+      var name = document.querySelector('.name');
+      var desc = document.querySelector('.desc');
+      var temp = document.querySelector('.temp');
+  button.addEventListener('click',function(){
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value+ '&appid=388f38b1d395a1a8a1290bf87320be20')  
+  .then(response => response.json())
+  .then(data => {
+    var nameValue = data['name'];
+    var tempValue = data['main']['temp'];
+    var descValue = data ['weather'][0]['description'];
+
+    name.innerHTML = nameValue;
+    temp.innerHTML =tempValue;
+    desc.innerHTML=descValue;
     console.log(data);
   })
-  .catch(function() {
-    console.log(error);
-  });
-}
+  .catch(err => alert())
+  })
     </script>
     </body>
 </html>
