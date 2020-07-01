@@ -1,41 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        
-    </head>
-    <body>
-
-       <div class="input">
-         <input type="text" class="inputValue" placeholder="enter a city">
-         <input type="submit" value = "Submit">
-       </div>
-
-       <div class="display">
-         <h1 class="name"></h1>
-         <p class = "desc"></p>
-         <p class ="temp"></p>
-       </div>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body> 
+    <h1 style= "color:blue;">Weather forecast</h1>
+    <input type ="text" placeholder="enter value" class= 'inputValue'>
+ 
+  <button id="getMessage">
+    Submit
+  </button> 
+<p id="message" class="box"></p>
     <script>
-      var button = document.querySelector('.button')
-      var inputValue = document.querySelector('.inputValue')
-      var name = document.querySelector('.name');
-      var desc = document.querySelector('.desc');
-      var temp = document.querySelector('.temp');
-  button.addEventListener('click',function(){
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value+ '&appid=388f38b1d395a1a8a1290bf87320be20')  
-  .then(response => response.json())
-  .then(data => {
-    var nameValue = data['name'];
-    var tempValue = data['main']['temp'];
-    var descValue = data ['weather'][0]['description'];
+      document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('getMessage').onclick= () => {
+var inputValue = document.querySelector('.inputValue')
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=388f38b1d395a1a8a1290bf87320be20')  
 
-    name.innerHTML = nameValue;
-    temp.innerHTML =tempValue;
-    desc.innerHTML=descValue;
-    console.log(data);
-  })
-  .catch(err => alert())
-  })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+
+      
+    };
+  });
+  
     </script>
-    </body>
+  </body>
 </html>
