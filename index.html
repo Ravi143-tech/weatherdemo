@@ -11,20 +11,24 @@
     Submit
   </button> 
 <p id="message" class="box"></p>
-    <script>
+    <script> 
+      
     document.getElementById('getMessage').onclick= () => {
 var inputValue = document.querySelector('.inputValue')
       fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=388f38b1d395a1a8a1290bf87320be20')  
 
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+      // console.log(data); 
+      console.log(data['name']);
+        console.log(data['main']['temp']);
+        console.log(data['main']['humidity']);
+        
     })
 
       
     };
  
-  
     </script>
   </body>
 </html>
