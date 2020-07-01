@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>weatherdemo</title>
+    <title></title>
   </head>
   <body> 
     <h1 style= "color:blue;">Weather forecast</h1>
-    <input type ="text" placeholder="enter value" class= 'inputValue'>
+    <input type ="text" placeholder="enter place name" class= 'inputValue'>
  
-  <button id="getMessage">
-    Submit
-  </button> 
-<p id="message" class="box"></p>
-    <script> 
+  <button id="submit">Submit</button>
+    <script>   
       
-    document.getElementById('getMessage').onclick= () => {
+    document.getElementById('submit').onclick= () => {
 var inputValue = document.querySelector('.inputValue')
       fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=388f38b1d395a1a8a1290bf87320be20')  
 
-    .then(response => response.json())
+    .then(response => response.json()) 
     .then(data => {
       // console.log(data); 
       console.log(data['name']);
