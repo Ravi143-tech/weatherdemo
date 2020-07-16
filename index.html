@@ -1,29 +1,139 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WeatherDemo</title>
+    <title></title>
   </head>
   <body> 
-    <h1 style= "color:blue;">Weather forecast</h1>
-    <input type ="text" placeholder="enter place name" class= 'inputValue'>
+    <style >
+    body {
+      background-image: url("https://htcfamily.org/assets/2017/04/Background-Sunrise-Fog.jpg");
+      background-repeat: no-repeat;
+
+    }
+    #first{ 
+    color:white;
+    background-color: red;
+    text-align:center;
+    }
+    #wait{
+      display: none;
+    }
+    #submit{
+      border:2px;
+      padding:3px solid black;
+      margin:5px;
+    }
+    #delete_btn{
+      border:2px;
+      padding:3px solid black;
+      margin:5px;
+    }
+   
+    #a{
+    float: left;
+    max-width:300px;
+    width:25%;
+    height:500px;
+    border-radius: 15px;
+    margin:0 auto;
+    padding:40px 20px;
+    box-shadow:0 10px 15px;
+    transition: 0 10px 15px;
+    background: linear-gradient(-45deg,#f403d1,#64b5f6);
+    text-align:center;
+    font-size: 60px;
+    color:#fff;
+    
  
+    }
+    #b{
+      float: right;
+    max-width:300px;
+    width:25%;
+    height:500px;
+    border-radius: 15px;
+    margin:0 auto;
+    padding:40px 20px;
+    box-shadow:0 10px 15px;
+    transition: 0 10px 15px;
+    background: linear-gradient(-45deg,#ffec61,#f321d7);
+    text-align:center;
+    font-size: 50px;
+    }
+    #c{
+      float: middle;
+    max-width:300px;
+    height:500px;
+    border-radius: 15px;
+    margin:0 auto;
+    padding:40px 20px;
+    box-shadow:0 10px 15px;
+    transition: 0 10px 15px;
+    background: linear-gradient(-45deg,#24ff72,#9a4eff);
+    text-align:center;
+    font-size: 50px;
+    }
+    
+    #run{
+      padding:5px;
+      margin:5px;
+      border:2px solid black;
+      
+    }
+    #den
+      {
+        background-color: red;
+      }
+    </style>
+    
+    <h1 id='first'>Weather forecast Application</h1>
+    <input type ="text" placeholder="enter value" id ="run">
+    <p id="wait" >loading..</p>
+ <div id="p">
   <button id="submit">Submit</button>
+  <button id="delete_btn">Delete</button>
+ </div>
+ <div id="weather_data" style = "display:none;">
+    <p id ="a"></p>
+    <p id ="b"></p>
+    <p id="c"></p>
+  </div>
+
+  
     <script>   
       
     document.getElementById('submit').onclick= () => {
-var inputValue = document.querySelector('.inputValue')
+var inputValue = document.querySelector('#run');
+const y = document.getElementById('wait');
+       y.style.display="block"; 
+       const weatherDataSection = document.getElementById('weather_data');
+       weatherDataSection.style.display = 'none';
+       
+       const w=document.getElementById('p');
+       w.style.display='none';
       fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=388f38b1d395a1a8a1290bf87320be20')  
 
     .then(response => response.json()) 
     .then(data => {
       // console.log(data); 
-      console.log(data['name']);
-        console.log(data['main']['temp']);
-        console.log(data['main']['humidity']);
-        
-    })
+      document.getElementById('a').innerHTML=data['name'];
+      document.getElementById('b').innerHTML=data['main']['temp'];
+      document.getElementById('c').innerHTML=data['main']['humidity'];
 
+      y.style.display="none"; 
+      const weatherDataSection = document.getElementById('weather_data');
+      const w=document.getElementById('p');
+       w.style.display='block';
+      weatherDataSection.style.display = 'block';
       
+    })
+    };
+
+    document.getElementById('delete_btn').onclick = () => {
+      const weatherDataSection = document.getElementById('weather_data');
+      const x = document.getElementById("run");
+      weatherDataSection.style.display = 'none';
+      x.value=' ';
     };
  
     </script>
